@@ -1,0 +1,67 @@
+
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 style="color: antiquewhite;">Employee List</h1>
+        <div class="d-flex">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add Employee</button>
+        </div>
+    </div>
+  </nav>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of employeeData">
+      <td><span>{{row.id}}</span></td>
+      <td><span>{{row.name}}</span></td>
+      <td><span>{{row.email}}</span></td>
+      <td><span>{{row.salary}}</span></td>
+      <td>
+        <button (click)="onEdit(row)" class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+        <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name">
+                 </div>
+    
+                 <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="email">
+                 </div>
+    
+                 <div class="form-group">
+                    <label>Salary</label>
+                    <input type="text" class="form-control" name="salary">
+               </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="postEmployeeDetails()"  class="btn btn-primary">Add</button>
+          <button type="button" (click)="postEmployeeDetails()"  class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
